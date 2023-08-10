@@ -1,39 +1,34 @@
 import { StringeeUtil, StringeeClient, StringeeCall2 } from "stringee";
 
-let stringeeClient,
-    call,
-    timeoutStats;
+let stringeeClient, call, timeoutStats;
 
-const
-    sdkVersion          = document.querySelector("#sdkVersion"),
-    loggedUserId        = document.querySelector("#loggedUserId"),
-    loginBtn            = document.querySelector("#loginBtn"),
-    accessTokenArea     = document.querySelector("#accessTokenArea"),
-    call2Btn            = document.querySelector("#call2Btn"),
-    call2HangupBtn      = document.querySelector("#call2HangupBtn"),
-    muteBtn             = document.querySelector("#muteBtn"),
-    enableVideoBtn      = document.querySelector("#enableVideoBtn"),
-    incomingcallBox     = document.querySelector("#incomingcallBox"),
-    incomingCallFrom    = document.querySelector("#incomingCallFrom"),
-    toNumberBtn         = document.querySelector("#toNumberBtn"),
+const sdkVersion = document.querySelector("#sdkVersion"),
+    loggedUserId = document.querySelector("#loggedUserId"),
+    loginBtn = document.querySelector("#loginBtn"),
+    accessTokenArea = document.querySelector("#accessTokenArea"),
+    call2Btn = document.querySelector("#call2Btn"),
+    call2HangupBtn = document.querySelector("#call2HangupBtn"),
+    muteBtn = document.querySelector("#muteBtn"),
+    enableVideoBtn = document.querySelector("#enableVideoBtn"),
+    incomingcallBox = document.querySelector("#incomingcallBox"),
+    incomingCallFrom = document.querySelector("#incomingCallFrom"),
+    toNumberBtn = document.querySelector("#toNumberBtn"),
     transferNumberInput = document.querySelector("#transferNumberInput"),
-    toType              = document.querySelector("#toType"),
-    transferType        = document.querySelector("#transferType"),
-    txtStatus           = document.querySelector("#txtStatus"),
-    audioSent           = document.querySelector("#audioSent"),
-    videoSent           = document.querySelector("#videoSent"),
-    audioReceived       = document.querySelector("#audioReceived"),
-    videoReceived       = document.querySelector("#videoReceived"),
-    transferBtn         = document.querySelector("#transferBtn"),
-    answerBtn           = document.querySelector("#answerBtn"),
-    rejectBtn           = document.querySelector("#rejectBtn"),
-    leaveBtn            = document.querySelector("#leaveBtn"),
-    holdBtn             = document.querySelector("#holdBtn"),
-    sendInfo2           = document.querySelector("#sendInfo2"),
-    sendInfo1           = document.querySelector("#sendInfo1"),
-
+    toType = document.querySelector("#toType"),
+    transferType = document.querySelector("#transferType"),
+    txtStatus = document.querySelector("#txtStatus"),
+    audioSent = document.querySelector("#audioSent"),
+    videoSent = document.querySelector("#videoSent"),
+    audioReceived = document.querySelector("#audioReceived"),
+    videoReceived = document.querySelector("#videoReceived"),
+    transferBtn = document.querySelector("#transferBtn"),
+    answerBtn = document.querySelector("#answerBtn"),
+    rejectBtn = document.querySelector("#rejectBtn"),
+    leaveBtn = document.querySelector("#leaveBtn"),
+    holdBtn = document.querySelector("#holdBtn"),
+    sendInfo2 = document.querySelector("#sendInfo2"),
+    sendInfo1 = document.querySelector("#sendInfo1"),
     STRINGEE_SERVER_ADDRS = ["wss://v1.stringee.com:6899/", "wss://v2.stringee.com:6899/"];
-
 
 sdkVersion.innerHTML = StringeeUtil.version().version + "_build_" + StringeeUtil.version().build + "_sample_1";
 
@@ -54,7 +49,7 @@ function sendInfo(msg) {
 }
 
 // eslint-disable-next-line no-unused-vars
-loginBtn.addEventListener("click", () =>{
+loginBtn.addEventListener("click", () => {
     stringeeClient = new StringeeClient(STRINGEE_SERVER_ADDRS);
     settingsClientEvents(stringeeClient);
     stringeeClient.connect(accessTokenArea.value);
@@ -88,7 +83,7 @@ function settingsClientEvents(client) {
         settingCallEvent(call);
 
         incomingcallBox.style.display = "block";
-        incomingCallFrom.innerHTML    = call2.fromNumber;
+        incomingCallFrom.innerHTML = call2.fromNumber;
     });
 }
 
@@ -188,8 +183,8 @@ answerBtn.addEventListener("click", () => {
 
 transferBtn.addEventListener("click", () => {
     console.log("testTransfer");
-    const to            = transferNumberInput.value,
-        toTypeValue     = toType.value,
+    const to = transferNumberInput.value,
+        toTypeValue = toType.value,
         transferTypeValue = transferType.value;
 
     call.transferCall(to, toTypeValue, transferTypeValue, console.log);
@@ -290,7 +285,7 @@ sendInfo1.addEventListener("click", () => {
 
 // eslint-disable-next-line camelcase
 function test_stats() {
-    const time = 2000;// ms
+    const time = 2000; // ms
     console.log("test_stats...");
 
     if (call && call.localTracks.length > 0) {

@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
+    "start": "webpack serve --open --port 8181 --config webpack.dev.config.js",
     "scripts": {
         "test": "jest",
         "build": "webpack --config webpack.prod.config.js",

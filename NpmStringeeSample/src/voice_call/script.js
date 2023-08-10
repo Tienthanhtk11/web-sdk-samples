@@ -4,17 +4,16 @@ let stringeeClient,
     call,
     authenticatedWithUserId = "";
 
-const
-    loginBtn         = document.querySelector("#loginBtn"),
-    accessTokenArea  = document.querySelector("#accessTokenArea"),
-    callTo           = document.querySelector("#callTo"),
-    fromNumber       = document.querySelector("#fromNumber"),
-    callStatus       = document.querySelector("#callStatus"),
-    callType         = document.querySelector("#callType"),
-    loggedUserId     = document.querySelector("#loggedUserId"),
-    callBtn          = document.querySelector("#callBtn"),
-    hangupBtn        = document.querySelector("#hangupBtn"),
-    incomingCallDiv  = document.querySelector("#incomingCallDiv"),
+const loginBtn = document.querySelector("#loginBtn"),
+    accessTokenArea = document.querySelector("#accessTokenArea"),
+    callTo = document.querySelector("#callTo"),
+    fromNumber = document.querySelector("#fromNumber"),
+    callStatus = document.querySelector("#callStatus"),
+    callType = document.querySelector("#callType"),
+    loggedUserId = document.querySelector("#loggedUserId"),
+    callBtn = document.querySelector("#callBtn"),
+    hangupBtn = document.querySelector("#hangupBtn"),
+    incomingCallDiv = document.querySelector("#incomingCallDiv"),
     incomingCallFrom = document.querySelector("#incomingCallFrom");
 
 console.log("StringeeUtil.isWebRTCSupported: " + StringeeUtil.isWebRTCSupported());
@@ -62,7 +61,7 @@ callBtn.addEventListener("click", () => {
 });
 
 // eslint-disable-next-line no-unused-vars
-answerBtn.addEventListener("click", () =>{
+answerBtn.addEventListener("click", () => {
     call.answer((res) => {
         console.log("answer res", res);
         incomingCallDiv.style.display = "none";
@@ -70,7 +69,7 @@ answerBtn.addEventListener("click", () =>{
 });
 
 // eslint-disable-next-line no-unused-vars
-rejectBtn.addEventListener("click", () =>{
+rejectBtn.addEventListener("click", () => {
     callStopped();
     call.reject((res) => {
         console.log("reject res", res);
@@ -79,7 +78,7 @@ rejectBtn.addEventListener("click", () =>{
 });
 
 // eslint-disable-next-line no-unused-vars
-hangupBtn.addEventListener("click", () =>{
+hangupBtn.addEventListener("click", () => {
     console.log("hangupBtn", remoteVideo);
     remoteVideo.srcObject = null;
     callStopped();
@@ -97,7 +96,6 @@ function callStopped() {
     }, 1500);
 }
 
-
 function settingClientEvents(client) {
     client.on("connect", () => {
         console.log("connected to StringeeServer");
@@ -107,9 +105,9 @@ function settingClientEvents(client) {
         console.log("on authen: ", res);
         if (res.r === 0) {
             callBtn.removeAttribute("disabled");
-            authenticatedWithUserId  = res.userId;
-            loggedUserId.innerHTML  = authenticatedWithUserId;
-            loggedUserId.style.color =  "blue";
+            authenticatedWithUserId = res.userId;
+            loggedUserId.innerHTML = authenticatedWithUserId;
+            loggedUserId.style.color = "blue";
         } else {
             loggedUserId.innerHTML = res.message;
         }
@@ -125,7 +123,7 @@ function settingClientEvents(client) {
         settingCallEvents(incomingcall);
 
         incomingCallDiv.style.display = "block";
-        incomingCallFrom.innerHTML  = call.fromNumber;
+        incomingCallFrom.innerHTML = call.fromNumber;
 
         console.log("incomingcall: ", incomingcall);
         // fromInternal: false
@@ -170,12 +168,14 @@ function settingCallEvents(call1) {
     call1.on("signalingstate", (state) => {
         console.log("signalingstate", state);
 
-        if (state.code == 6) {// call ended
+        if (state.code == 6) {
+            // call ended
             incomingCallDiv.style.display = "none";
             callStopped();
         }
 
-        if (state.code == 5) {// busy here
+        if (state.code == 5) {
+            // busy here
             callStopped();
         }
 

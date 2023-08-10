@@ -2,6 +2,7 @@
     "plugins": [],
     "extends": ["google"],
     "rules": {
+        "linebreak-style": ["error", "windows"],
         "indent": ["error", 4],
         "max-len": [
             "error",
@@ -18,7 +19,7 @@
             {
                 "multiLine": {
                     "beforeColon": true,
-                    "afterColon":true
+                    "afterColon": true
                 },
                 "align": {
                     "beforeColon": true,
@@ -38,7 +39,7 @@
                 }
             }
         ],
-        "one-var" : ["error", "consecutive"]
+        "one-var": ["error", "consecutive"]
     },
     "parserOptions": {
         "ecmaVersion": 2022,
